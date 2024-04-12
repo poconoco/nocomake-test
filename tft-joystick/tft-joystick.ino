@@ -16,8 +16,8 @@
 #define R 10
 
 TFT myScreen = TFT(CS, DC, RESET);
-int prevX = -100;
-int prevY = -100;
+int prevX = -10000;
+int prevY = -10000;
 
 void setup() {
   myScreen.begin();

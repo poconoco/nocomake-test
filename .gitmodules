@@ -1,0 +1,3 @@
+[submodule "py-3dof-test/submodules/py_kinematics"]
+	path = py-3dof-test/submodules/py_kinematics
+	url = git@github.com:poconoco/py-kinematics.git

@@ -1,2 +1,4 @@
+pyyaml
 adafruit-circuitpython-pca9685
-adafruit-motor
+adafruit-circuitpython-motor
+

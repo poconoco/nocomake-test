@@ -1,0 +1,41 @@
+left_first:
+  coxa:
+    channel: 4
+    min_pulse: 500
+    max_pulse: 2500
+    angle: 120
+    multiplier: 1
+  femur:
+    channel: 2
+    min_pulse: 500
+    max_pulse: 2450
+    angle: 90
+    multiplier: -1
+  tibia:
+    channel: 0
+    min_pulse: 500
+    max_pulse: 2500
+    angle: 27
+    multiplier: -1
+    angle_phisical_delta: -15.11
+
+right_first:
+  coxa:
+    channel: 5
+    min_pulse: 500
+    max_pulse: 2500
+    angle: 40
+    multiplier: 1
+  femur:
+    channel: 3
+    min_pulse: 500
+    max_pulse: 2500
+    angle: 80
+    multiplier: 1
+  tibia:
+    channel: 1
+    min_pulse: 500
+    max_pulse: 2500
+    angle: 175
+    multiplier: 1
+    angle_phisical_delta: -15.11

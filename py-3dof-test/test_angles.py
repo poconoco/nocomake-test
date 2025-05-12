@@ -1,32 +1,55 @@
+import yaml
 import time
+import board
 
 from adafruit_motor import servo
 from adafruit_pca9685 import PCA9685
 
 
+def get_servo(pca, servo_config):
+    return servo.Servo(pca.channels[servo_config['channel']], min_pulse=servo_config['min_pulse'], max_pulse=servo_config['max_pulse'])
+
+
+def set_angle(servo_, servo_config, angle):
+    servo_.angle = servo_config['angle'] + (servo_config.get('angle_phisical_delta', 0) + angle) * servo_config.get('multiplier', 1)
+
+
+def move(pca, config, leg_name, ca, fa, ta):
+    leg_config = config[leg_name]
+
+    coxa_config = leg_config['coxa']
+    femur_config = leg_config['femur']
+    tibia_config = leg_config['tibia']
+
+    coxa_servo = get_servo(pca, coxa_config)
+    femur_servo = get_servo(pca, femur_config)
+    tibia_servo = get_servo(pca, tibia_config)
+
+    set_angle(coxa_servo, coxa_config, ca)
+    set_angle(femur_servo, femur_config, fa)
+    set_angle(tibia_servo, tibia_config, ta)
+
+    time.sleep(1)
+
+    coxa_servo.angle = None
+    femur_servo.angle = None
+    tibia_servo.angle = None
+    print("Servo controller deinitialized.")
+
 def main():
 
-    # Init servo controller attaced via I2C
+    with open('config.yaml', 'r') as config_file:
+        config = yaml.safe_load(config_file)
+
     i2c = board.I2C()
     pca = PCA9685(i2c)
     pca.frequency = 50
 
-    # Init servos, servos [0, 2, 4] is one limb, [1, 3, 5] is the other
-    coxa_servo = servo.Servo(pca.channels[0])
-    femur_servo = servo.Servo(pca.channels[2])
-    tibia_servo = servo.Servo(pca.channels[4])
-
-    coxa_servo.angle = 90
-    femur_servo.angle = 90
-    tibia_servo.angle = 90
-
-    print(f"Angles: {coxa_servo.angle}, {femur_servo.angle}, {tibia_servo.angle}")
-
-    time.sleep(5)
+    move(pca, config, 'left_first', -60, -60, -90)
+    move(pca, config, 'right_first', 60, -60, -90)
 
     pca.deinit()
-    print("Servo controller deinitialized.")
-    
+
 
 if __name__ == "__main__":
     main()

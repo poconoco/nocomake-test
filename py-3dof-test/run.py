@@ -19,7 +19,7 @@ class Leg:
         self.ik.femur_length = leg_config['femur'].get('length', 0.0)
         self.ik.tibia_length = leg_config['tibia'].get('length', 0.0)
 
-        self.ik.coxa_angle_for_sideway = leg_config['coxa']['angle_for_sideway']
+        self.ik.coxa_angle_for_forward = leg_config['coxa']['angle_for_forward']
         self.ik.femur_angle_for_horizontal = leg_config['femur']['angle_for_horizontal']
 
         # angle_phisical_delta is used for femur that are Г-shaped, and it's easier to 
@@ -38,6 +38,9 @@ class Leg:
 
     def reach(self, point: Point3D):
         coxa_angle, femur_angle, tibia_angle = self.ik.get_angles(point)
+
+        print(f'Coxa: {coxa_angle}, Femur: {femur_angle}, Tibia: {tibia_angle}')
+
         if coxa_angle is not None:
             self.coxa_servo.angle = coxa_angle
 
@@ -68,7 +71,7 @@ def main():
     left_leg = Leg(config['left_first'], pca)
     right_leg = Leg(config['right_first'], pca)
 
-    left_leg.reach(Point3D(10, 10, -50))
+    left_leg.reach(Point3D(0, 100, -50))
 
     time.sleep(1)
     left_leg.detach()

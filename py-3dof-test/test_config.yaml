@@ -1,0 +1,55 @@
+left_first:
+  coxa:
+    angle: 120
+    multiplier: 1
+    h_offset: -50
+    v_offset: 30
+    servo:
+      channel: 4
+      min_pulse: 500
+      max_pulse: 2500
+  femur:
+    angle: 90
+    multiplier: -1
+    length: 69.2
+    servo:
+      channel: 2
+      min_pulse: 500
+      max_pulse: 2450
+  tibia:
+    angle: 27
+    multiplier: -1
+    angle_phisical_delta: -15.11
+    length: 103.58
+    servo:
+      channel: 0
+      min_pulse: 500
+      max_pulse: 2500
+
+right_first:
+  coxa:
+    angle: 40
+    multiplier: 1
+    h_offset: 50
+    v_offset: 30
+    servo:
+      channel: 5
+      min_pulse: 500
+      max_pulse: 2500
+  femur:
+    angle: 80
+    multiplier: 1
+    length: 69.2
+    servo:
+      channel: 3
+      min_pulse: 500
+      max_pulse: 2500
+  tibia:
+    angle: 175
+    multiplier: 1
+    angle_phisical_delta: -15.11
+    length: 103.58
+    servo:
+      channel: 1
+      min_pulse: 500
+      max_pulse: 2500

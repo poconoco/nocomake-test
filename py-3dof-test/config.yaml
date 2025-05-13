@@ -1,8 +1,8 @@
 left_first:
   coxa:
-    angle_for_sideway: 120
+    angle_for_forward: 30
     multiplier: 1
-    h_offset: -50
+    h_offset: 50
     v_offset: 30
     servo:
       channel: 4
@@ -28,7 +28,7 @@ left_first:
 
 right_first:
   coxa:
-    angle_for_sideway: 40
+    angle_for_forward: 130
     multiplier: 1
     h_offset: 50
     v_offset: 30

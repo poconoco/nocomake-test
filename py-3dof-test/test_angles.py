@@ -11,7 +11,9 @@ def get_servo(pca, servo_config):
 
 
 def set_angle(servo_, servo_config, angle):
-    servo_.angle = servo_config['angle'] + (servo_config.get('angle_phisical_delta', 0) + angle) * servo_config.get('multiplier', 1)
+    servo_angle = servo_config['angle'] + (servo_config.get('angle_phisical_delta', 0) + angle) * servo_config.get('multiplier', 1)
+    print(f'angle: {servo_angle}')
+    servo_.angle = servo_angle
 
 
 def move(pca, config, leg_name, ca, fa, ta):
@@ -21,9 +23,9 @@ def move(pca, config, leg_name, ca, fa, ta):
     femur_config = leg_config['femur']
     tibia_config = leg_config['tibia']
 
-    coxa_servo = get_servo(pca, coxa_config)
-    femur_servo = get_servo(pca, femur_config)
-    tibia_servo = get_servo(pca, tibia_config)
+    coxa_servo = get_servo(pca, coxa_config['servo'])
+    femur_servo = get_servo(pca, femur_config['servo'])
+    tibia_servo = get_servo(pca, tibia_config['servo'])
 
     set_angle(coxa_servo, coxa_config, ca)
     set_angle(femur_servo, femur_config, fa)
@@ -38,15 +40,15 @@ def move(pca, config, leg_name, ca, fa, ta):
 
 def main():
 
-    with open('config.yaml', 'r') as config_file:
+    with open('test_config.yaml', 'r') as config_file:
         config = yaml.safe_load(config_file)
 
     i2c = board.I2C()
     pca = PCA9685(i2c)
     pca.frequency = 50
 
-    move(pca, config, 'left_first', -60, -60, -90)
-    move(pca, config, 'right_first', 60, -60, -90)
+#    move(pca, config, 'left_first', -90, -60, -90)
+    move(pca, config, 'right_first', 90, -60, -90)
 
     pca.deinit()
 

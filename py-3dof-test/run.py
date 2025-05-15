@@ -71,10 +71,12 @@ def main():
     left_leg = Leg(config['left_first'], pca)
     right_leg = Leg(config['right_first'], pca)
 
-    left_leg.reach(Point3D(0, 100, -50))
+    left_leg.reach(Point3D(-20, 100, -30))
+    right_leg.reach(Point3D(20, 100, -50))
 
     time.sleep(1)
     left_leg.detach()
+    right_leg.detach()
 
     pca.deinit()
 

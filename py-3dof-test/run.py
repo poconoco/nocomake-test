@@ -8,6 +8,7 @@ from adafruit_pca9685 import PCA9685
 
 from submodules.py_kinematics.ik3dof import IK3DOF
 from submodules.py_kinematics.point3d import Point3D
+from submodules.bt_remote.receivers.python.tcp_rc_receiver import TcpRcReceiver, rc_state_to_str
 
 
 class Leg:
@@ -39,15 +40,16 @@ class Leg:
     def reach(self, point: Point3D):
         coxa_angle, femur_angle, tibia_angle = self.ik.get_angles(point)
 
-        print(f'Coxa: {coxa_angle}, Femur: {femur_angle}, Tibia: {tibia_angle}')
-
         if coxa_angle is not None:
+            coxa_angle = _clamp(coxa_angle, 0, 180)
             self.coxa_servo.angle = coxa_angle
 
         if femur_angle is not None:    
+            femur_angle = _clamp(femur_angle, 0, 180)
             self.femur_servo.angle = femur_angle
 
         if tibia_angle is not None:
+            tibia_angle = _clamp(tibia_angle, 0, 180)
             self.tibia_servo.angle = tibia_angle
 
     def detach(self):
@@ -71,14 +73,36 @@ def main():
     left_leg = Leg(config['left_first'], pca)
     right_leg = Leg(config['right_first'], pca)
 
-    left_leg.reach(Point3D(-20, 100, -30))
-    right_leg.reach(Point3D(20, 100, -50))
+    rc = TcpRcReceiver(print_debug=True)
 
-    time.sleep(1)
-    left_leg.detach()
-    right_leg.detach()
+    left_center_point = Point3D(-30, 100, -30)
+    right_center_point = Point3D(30, 100, -30)
+    scale = 0.5
 
-    pca.deinit()
+    print("\nPress Ctrl+C key to exit...")
+    try:
+        while True:
+            if rc.is_connected():
+                print('\r'+rc_state_to_str(rc), end='', flush=True)
+                rc.send(f'Live for: {round(rc.get_connected_time())}s')
+
+                left_leg.reach(left_center_point + Point3D(rc.get_x1(), rc.get_y1(), 0) * scale)
+                right_leg.reach(right_center_point + Point3D(rc.get_x2(), rc.get_y2(), 0) * scale)
+            else:
+                left_leg.detach()
+                right_leg.detach()
+
+            time.sleep(0.01)
+    except KeyboardInterrupt:
+        print("\nExiting...")
+    finally:
+        left_leg.detach()
+        right_leg.detach()
+        pca.deinit()
+
+
+def _clamp(value, min_value, max_value):
+    return min(max(value, min_value), max_value)
 
 
 if __name__ == "__main__":

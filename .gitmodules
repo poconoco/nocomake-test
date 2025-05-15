@@ -1,3 +1,6 @@
 [submodule "py-3dof-test/submodules/py_kinematics"]
 	path = py-3dof-test/submodules/py_kinematics
 	url = git@github.com:poconoco/py-kinematics.git
+[submodule "py-3dof-test/submodules/bt_remote"]
+	path = py-3dof-test/submodules/bt_remote
+	url = git@github.com:poconoco/bt-remote.git

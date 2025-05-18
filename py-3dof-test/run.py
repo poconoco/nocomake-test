@@ -38,7 +38,6 @@ class Leg:
             initial_point,
             leg_config['speed'],
             leg_config['acceleration'],
-            leg_config['acceleration'],
             1.0
         )
 

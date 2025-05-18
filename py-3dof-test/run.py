@@ -45,28 +45,24 @@ class Leg:
         self.femur_servo = self._get_servo(leg_config['femur']['servo'], pca)
         self.tibia_servo = self._get_servo(leg_config['tibia']['servo'], pca)
 
-    def reach(self, point: Point3D):
-        self.smoother.set_target(point)
-
-        smoothed_point = self.smoother.get()
-        print(f'Smoothed point: {smoothed_point}')
-
-        coxa_angle, femur_angle, tibia_angle = self.ik.get_angles(smoothed_point)
-
-
-
-#        self._set_servo_angle(self.coxa_servo, coxa_angle)
-#        self._set_servo_angle(self.femur_servo, femur_angle)
-#        self._set_servo_angle(self.tibia_servo, tibia_angle)
-
-    def tick(self):
+    def tick(self, reach_to: Point3D):
         now = time.time()
         if self.prev_tick is None:
             self.prev_tick = now
             return
 
+        self.smoother.set_target(reach_to)
         self.smoother.tick(now - self.prev_tick)
         self.prev_tick = now
+
+        smoothed_point = self.smoother.get()
+        #print(f'Smoothed point: {smoothed_point}')
+
+        coxa_angle, femur_angle, tibia_angle = self.ik.get_angles(smoothed_point)
+
+        self._set_servo_angle(self.coxa_servo, coxa_angle)
+        self._set_servo_angle(self.femur_servo, femur_angle)
+        self._set_servo_angle(self.tibia_servo, tibia_angle)
 
     def detach(self):
         self.coxa_servo.angle = None
@@ -96,8 +92,8 @@ def main():
     pca = PCA9685(i2c)
     pca.frequency = 50
 
-    left_center_point = Point3D(-30, 100, -30)
-    right_center_point = Point3D(30, 100, -30)
+    left_center_point = Point3D(-50, 100, -90)
+    right_center_point = Point3D(50, 100, -90)
 
     left_leg = Leg(config['left_first'], pca, left_center_point)
     right_leg = Leg(config['right_first'], pca, right_center_point)
@@ -113,16 +109,13 @@ def main():
                 #print('\r'+rc_state_to_str(rc), end='', flush=True)
                 rc.send(f'Live for: {round(rc.get_connected_time())}s')
 
-                left_leg.reach(left_center_point + Point3D(rc.get_x1(), rc.get_y1(), 0) * scale)
-                #right_leg.reach(right_center_point + Point3D(rc.get_x2(), rc.get_y2(), 0) * scale)
-
-                left_leg.tick()
-                right_leg.tick()
+                left_leg.tick(left_center_point + Point3D(rc.get_x1(), rc.get_y1(), 0) * scale)
+                right_leg.tick(right_center_point + Point3D(rc.get_x2(), rc.get_y2(), 0) * scale)
             else:
                 left_leg.detach()
                 right_leg.detach()
 
-            time.sleep(0.01)
+            time.sleep(0.005)
     except KeyboardInterrupt:
         print("\nExiting...")
     finally:

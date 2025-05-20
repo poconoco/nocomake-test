@@ -92,8 +92,8 @@ def main():
     pca = PCA9685(i2c)
     pca.frequency = 50
 
-    left_center_point = Point3D(-50, 100, -90)
-    right_center_point = Point3D(50, 100, -90)
+    left_center_point = Point3D(-120, 50, -90)
+    right_center_point = Point3D(120, 50, -90)
 
     left_leg = Leg(config['left_first'], pca, left_center_point)
     right_leg = Leg(config['right_first'], pca, right_center_point)
@@ -109,8 +109,8 @@ def main():
                 #print('\r'+rc_state_to_str(rc), end='', flush=True)
                 rc.send(f'Live for: {round(rc.get_connected_time())}s')
 
-                left_leg.tick(left_center_point + Point3D(rc.get_x1(), rc.get_y1(), 0) * scale)
-                right_leg.tick(right_center_point + Point3D(rc.get_x2(), rc.get_y2(), 0) * scale)
+                left_leg.tick(left_center_point + Point3D(rc.get_slider_left(), -rc.get_x1() ,rc.get_y1()) * scale)
+                right_leg.tick(right_center_point + Point3D(rc.get_slider_right(), rc.get_x2() ,rc.get_y2()) * scale)
             else:
                 left_leg.detach()
                 right_leg.detach()

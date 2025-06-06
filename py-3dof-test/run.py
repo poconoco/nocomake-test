@@ -71,7 +71,10 @@ class Leg:
         
 
     def _get_servo(self, servo_config, pca):
-        return servo.Servo(pca.channels[servo_config['channel']], min_pulse=servo_config['min_pulse'], max_pulse=servo_config['max_pulse'])
+        return servo.Servo(
+            pca.channels[servo_config['channel']],
+            min_pulse=servo_config['min_pulse'],
+            max_pulse=servo_config['max_pulse'])
 
     @staticmethod
     def _set_servo_angle(servo, angle):
@@ -109,8 +112,21 @@ def main():
                 #print('\r'+rc_state_to_str(rc), end='', flush=True)
                 rc.send(f'Live for: {round(rc.get_connected_time())}s')
 
-                left_leg.tick(left_center_point + Point3D(rc.get_slider_left(), -rc.get_x1() ,rc.get_y1()) * scale)
-                right_leg.tick(right_center_point + Point3D(rc.get_slider_right(), rc.get_x2() ,rc.get_y2()) * scale)
+                left_leg.tick(
+                    left_center_point + Point3D(
+                        rc.get_slider_left(),
+                        -rc.get_x1(),
+                        rc.get_y1()
+                    ) * scale
+                )
+
+                right_leg.tick(
+                    right_center_point + Point3D(
+                        rc.get_slider_right(),
+                        rc.get_x2(),
+                        rc.get_y2()
+                    ) * scale
+                )
             else:
                 left_leg.detach()
                 right_leg.detach()

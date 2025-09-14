@@ -1,11 +1,15 @@
 # Dial-up login into system via modem
 
-Let's assume the modem is conneted to `/dev/ttyUSB0`
+## Setup mgetty
 
 We need to install `mgetty`:
 ```
 sudo apt install mgetty
 ```
+
+## Configure mgetty
+
+Let's assume the modem is conneted to `/dev/ttyUSB0`
 
 Then configure it for our modem:
 ```
@@ -24,7 +28,7 @@ port ttyUSB0
   toggle-dtr yes
 ```
 
-Then wrap it into a systemd service:
+## Run mgetty as a service
 
 ```
 nano /etc/systemd/system/mgetty@ttyUSB0.service

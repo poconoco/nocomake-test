@@ -8,7 +8,7 @@ X windows system allows to run apps over the network. It can be wired manually b
 ```
 sudo apt install xauth x11-apps
 ```
-And may eb an app to test with:
+And may be an app to test with:
 ```
 sudo apt install xbill
 ```

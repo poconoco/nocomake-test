@@ -2,7 +2,7 @@
 
 X windows system allows to run apps over the network. It can be wired manually by mesing with port forwarding and DISPLAY end var, but ssh supports it natively with minor setup (which is required for DISPLAY env var way anyway).
 
-## On the server you will run apps on
+## On the server (aka X-Client) you will run apps on
 
 ### Install some software
 ```
@@ -26,7 +26,7 @@ Restart the ssh daemon:
 sudo systemctl restart ssh
 ```
 
-## On the client side
+## On the client (aka X-Server) side
 
 ### Connect via ssh with -Y flag
 Ssh supports flag for forwarding X Window connections with a simple flag `-Y`:

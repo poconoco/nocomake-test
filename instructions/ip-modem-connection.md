@@ -2,9 +2,11 @@
 
 ## Server setup (the system that will accept calls)
 
-### Configure mgetty to pick up calls to your modem
-
-Follow the instructions in the [dialup-login.md](dialup-login.md) - they are for remote login, but they are also work for ppp dial-in, with the addition of steps below
+### Setup mgetty to pick up calls to your modem
+```
+sudo apt install mgetty
+```
+Then, follow the instructions in the [dialup-login.md](dialup-login.md) - they are for remote login, but also should work for ppp dial-in, with the addition of steps below
 
 ### Configure mgetty for pppd
 

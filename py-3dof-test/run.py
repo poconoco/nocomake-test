@@ -8,7 +8,7 @@ from adafruit_pca9685 import PCA9685
 from submodules.py_kinematics.ik3dof import IK3DOF
 from submodules.py_kinematics.point3d import Point3D
 from submodules.py_kinematics.smoother3d import Smoother3D
-from submodules.bt_remote.receivers.python.tcp_rc_receiver import TcpRcReceiver, rc_state_to_str
+from submodules.bt_remote.receivers.python.tcp_rc_receiver import TcpRcReceiver
 
 
 class Leg:

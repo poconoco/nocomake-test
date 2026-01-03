@@ -22,8 +22,8 @@ legs:
       servo:
         i2c_address: 0x40
         channel: 2
-        min_pulse: 390
-        max_pulse: 2550
+        min_pulse: 500
+        max_pulse: 2630
         rest_angle: 90
         multiplier: 1
 
@@ -42,8 +42,8 @@ legs:
       servo:
         i2c_address: 0x40
         channel: 4
-        min_pulse: 410
-        max_pulse: 2550
+        min_pulse: 480
+        max_pulse: 2630
         rest_angle: 90
         multiplier: 1
 

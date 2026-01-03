@@ -28,7 +28,7 @@ def main():
 
 #    servo_config = config['tail']
 
-    servo_config = config['legs']['left_middle']['coxa']['servo']
+    servo_config = config['legs']['right_middle']['coxa']['servo']
 
 
     i2c = board.I2C()
@@ -37,11 +37,13 @@ def main():
 
     test_servo = get_servo(pca, servo_config)
 
-#    move(pca, config, 'left_first', -90, -60, -90)
-    move(test_servo, servo_config, -45)
-    move(test_servo, servo_config, 45)
-    move(test_servo, servo_config, -45)
-    move(test_servo, servo_config, 45)
+
+    move(test_servo, servo_config, 0)
+
+    #move(test_servo, servo_config, -45)
+    #move(test_servo, servo_config, 45)
+    #move(test_servo, servo_config, -45)
+    #move(test_servo, servo_config, 45)
 
     pca.deinit()
 

@@ -1,0 +1,67 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+*.log
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# --- C/C++ / Embedded ---
+# Build artifacts
+*.o
+*.obj
+*.elf
+*.map
+*.lst
+*.out
+*.bin
+*.hex
+*.srec
+
+# Libraries and generated files
+*.a
+*.lib
+*.dll
+*.dylib
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# --- PlatformIO ---
+.pio/
+.pioenvs/
+.piolibdeps/
+.pio/libdeps/
+.pio/build/
+.pio/test/
+
+# --- VSCode ---
+.vscode/
+.history/
+*.code-workspace
+
+# --- General ---
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Backup files
+*~
+*.bak
+*.swp

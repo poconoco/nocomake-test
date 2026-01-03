@@ -1,0 +1,50 @@
+tail:
+  i2c_address: 0x40
+  channel: 0
+  min_pulse: 410
+  max_pulse: 2550
+  rest_angle: 90
+  multiplier: 1
+
+legs:
+  left_rear:
+    coxa:
+      servo:
+        i2c_address: 0x40
+        channel: 1
+        min_pulse: 410
+        max_pulse: 2480
+        rest_angle: 90
+        multiplier: 1
+
+  right_rear:
+    coxa:
+      servo:
+        i2c_address: 0x40
+        channel: 2
+        min_pulse: 390
+        max_pulse: 2550
+        rest_angle: 90
+        multiplier: 1
+
+  left_middle:
+    coxa:
+      servo:
+        i2c_address: 0x40
+        channel: 3
+        min_pulse: 390
+        max_pulse: 2480
+        rest_angle: 90
+        multiplier: 1
+
+  right_middle:
+    coxa:
+      servo:
+        i2c_address: 0x40
+        channel: 4
+        min_pulse: 410
+        max_pulse: 2550
+        rest_angle: 90
+        multiplier: 1
+
+

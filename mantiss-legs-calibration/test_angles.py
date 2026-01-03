@@ -28,7 +28,7 @@ def main():
 
 #    servo_config = config['tail']
 
-    servo_config = config['legs']['right_middle']['coxa']['servo']
+    servo_config = config['legs']['right_front']['coxa']['servo']
 
 
     i2c = board.I2C()

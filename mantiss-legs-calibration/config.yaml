@@ -16,7 +16,7 @@ legs:
         min_pulse: 410
         max_pulse: 2480
         rest_angle: 90
-        multiplier: 1
+        multiplier: -1
     femur:
       servo:
         i2c_address: 0x40
@@ -24,7 +24,7 @@ legs:
         min_pulse: 390
         max_pulse: 2430
         rest_angle: 90
-        multiplier: 1
+        multiplier: -1
     tibia:
       servo:
         i2c_address: 0x41
@@ -58,7 +58,7 @@ legs:
         min_pulse: 500
         max_pulse: 2460
         rest_angle: 90
-        multiplier: 1
+        multiplier: -1
 
   left_middle:
     coxa:
@@ -68,7 +68,7 @@ legs:
         min_pulse: 390
         max_pulse: 2480
         rest_angle: 90
-        multiplier: 1
+        multiplier: -1
     femur:
       servo:
         i2c_address: 0x40
@@ -84,7 +84,7 @@ legs:
         min_pulse: 480
         max_pulse: 2450
         rest_angle: 90
-        multiplier: 1
+        multiplier: -1
 
   right_middle:
     coxa:
@@ -102,7 +102,7 @@ legs:
         min_pulse: 400
         max_pulse: 2500
         rest_angle: 90
-        multiplier: 1
+        multiplier: -1
     tibia:
       servo:
         i2c_address: 0x41
@@ -120,14 +120,14 @@ legs:
         min_pulse: 590
         max_pulse: 2700
         rest_angle: 90
-        multiplier: 1
+        multiplier: -1
       servo2:
         i2c_address: 0x40
         channel: 11
         min_pulse: 400
         max_pulse: 2480
-        rest_angle: 90
-        multiplier: 1
+        rest_angle: 180
+        multiplier: -1
     femur:
       servo:
         i2c_address: 0x40
@@ -135,7 +135,7 @@ legs:
         min_pulse: 400
         max_pulse: 2550
         rest_angle: 90
-        multiplier: 1
+        multiplier: -1
     tibia:
       servo:
         i2c_address: 0x41
@@ -159,8 +159,8 @@ legs:
         channel: 12
         min_pulse: 500
         max_pulse: 2570
-        rest_angle: 90
-        multiplier: 1
+        rest_angle: 180
+        multiplier: -1
     femur:
       servo:
         i2c_address: 0x40
@@ -168,7 +168,7 @@ legs:
         min_pulse: 420
         max_pulse: 2520
         rest_angle: 90
-        multiplier: 1
+        multiplier: -1
     tibia:
       servo:
         i2c_address: 0x41

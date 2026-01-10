@@ -1,10 +1,11 @@
 tail:
-  i2c_address: 0x40
-  channel: 0
-  min_pulse: 410
-  max_pulse: 2550
-  rest_angle: 90
-  multiplier: 1
+  servo:
+    i2c_address: 0x40
+    channel: 0
+    min_pulse: 410
+    max_pulse: 2550
+    rest_angle: 90
+    multiplier: 1
 
 legs:
   left_rear:

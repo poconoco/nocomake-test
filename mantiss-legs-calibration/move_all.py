@@ -42,7 +42,7 @@ def main():
 
     angle_base = 0
     angle_delta = 0
-    increment = 1
+    increment = 0.5
     while True:
         angle_delta += increment
         if angle_delta > 10 or angle_delta == 0:
